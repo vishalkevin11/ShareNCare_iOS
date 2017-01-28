@@ -207,7 +207,7 @@ class MyTripsNetworkManager: NSObject {
     
     
     
-    func getAllFoodItems(_ completion: @escaping (AnyObject?, NSError?) -> Void) -> Void {
+    func getAllFoodItems(lat_val : Double, long_val : Double, _ completion: @escaping (AnyObject?, NSError?) -> Void) -> Void {
         
         
         let cacheDefaults : UserDefaults = UserDefaults.init(suiteName: kCacheSuitName)!
@@ -220,7 +220,7 @@ class MyTripsNetworkManager: NSObject {
         
         ////let urlstr : String = kBaseURLString
         let urlstr : String = AppCacheManager.sharedInstance.baseURl!
-        self.networkManager.getResponseForUrl("\(urlstr)fetch_product.php?phonenumber=\(loggedInUserPhoneNumber)", params: nil) { (response : AnyObject?, error : NSError?) in
+        self.networkManager.getResponseForUrl("\(urlstr)fetch_product.php?lat=\(lat_val)&lng=\(long_val)", params: nil) { (response : AnyObject?, error : NSError?) in
             
             if (error == nil) && (response != nil) {
                 

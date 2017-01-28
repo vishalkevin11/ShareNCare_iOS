@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 //import PopupViewController
 
 
@@ -52,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func switchControllers() -> Void {
+        
+        GMSServices.provideAPIKey("AIzaSyBYlV9fIYKemuLjp5VyBMa_YycGaWFBu2E")
+        GMSPlacesClient.provideAPIKey("AIzaSyBYlV9fIYKemuLjp5VyBMa_YycGaWFBu2E")
+        directionsAPI = PXGoogleDirections(apiKey: "AIzaSyBYlV9fIYKemuLjp5VyBMa_YycGaWFBu2E")
+        
         if !AppCacheManager.sharedInstance.isLoggedIn() {
             
             let mainStoryboard : UIStoryboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
@@ -64,8 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        GMSServices.provideAPIKey("AIzaSyBYlV9fIYKemuLjp5VyBMa_YycGaWFBu2E")
-        directionsAPI = PXGoogleDirections(apiKey: "AIzaSyBYlV9fIYKemuLjp5VyBMa_YycGaWFBu2E")
+        
     }
     
     

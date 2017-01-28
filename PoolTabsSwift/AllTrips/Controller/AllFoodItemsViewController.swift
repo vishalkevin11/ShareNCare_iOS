@@ -26,6 +26,10 @@ class AllFoodItemsViewController: UIViewController {
     
     var selectedImageData : Data?
     
+    
+     var  globalSourceLocation : LocationModal! = LocationModal()
+    
+    
     @IBOutlet weak var travellerSegment: UISegmentedControl!
     var myTripsNetworkManager : MyTripsNetworkManager  = MyTripsNetworkManager()
     @IBOutlet weak var tableViewAllTrips: UITableView!
@@ -239,7 +243,7 @@ class AllFoodItemsViewController: UIViewController {
     
     func fetchAllFoodItems() -> Void {
         PoolContants.sharedInstance.show()
-        myTripsNetworkManager.getAllFoodItems { (responseTrips : AnyObject?, error : NSError?) in
+        myTripsNetworkManager.getAllFoodItems(lat_val: self.globalSourceLocation.latitude_val!, long_val: self.globalSourceLocation.longitude_val!) { (responseTrips : AnyObject?, error : NSError?) in
             PoolContants.sharedInstance.dismiss()
             var alertMess  = ""
             var alertTitle  = ""

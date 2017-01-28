@@ -24,10 +24,10 @@ class LocationModal: NSObject {
     convenience init(locationDict : NSDictionary){
         
         self.init()
-        self.placeName =  ((locationDict["name"]) != nil ) ? locationDict["name"]! as? String : "NA"
-        self.formatedAddress =  ((locationDict["formattedAddress"]) != nil ) ? locationDict["formattedAddress"]! as? String : "NA"
+        self.placeName =  ((locationDict["name"]) != nil ) ? locationDict["name"]! as? String : ""
+        self.formatedAddress =  ((locationDict["formattedAddress"]) != nil ) ? locationDict["formattedAddress"]! as? String : ""
         
-        self.placeID =  ((locationDict["placeID"]) != nil ) ? locationDict["placeID"]! as? String : "NA"
+        self.placeID =  ((locationDict["placeID"]) != nil ) ? locationDict["placeID"]! as? String : ""
         
         
         self.longitude_val =  ((locationDict["longitude"]) != nil ) ? (locationDict["longitude"]! as AnyObject).doubleValue : 0.0

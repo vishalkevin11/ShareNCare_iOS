@@ -7,7 +7,16 @@
 //
 
 import UIKit
+import GoogleMaps
+import GooglePlaces
+import GooglePlacePicker
+import CoreLocation
+//import OpinionzAlertView
+//import PopupViewController
 import ReachabilitySwift
+//import MBPhotoPicker
+import Alamofire
+
 
 class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
@@ -16,6 +25,12 @@ class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableV
     @IBOutlet weak var clearPlaceSearchedBtn: UIButton!
     @IBOutlet weak var placenamesearched: UILabel!
     
+    var locationManager: CLLocationManager!
+    var placePicker: GMSPlacePicker!
+    var latitude: Double! = 0.0
+    var longitude: Double! = 0.0
+    
+    var  sourceLocation : LocationModal! = LocationModal()
     var arrayTrip : [ProductType]? = []
     var arrayDatasource : [ProductType]? = []
     var selectedTrip : ProductType?
@@ -146,6 +161,8 @@ class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableV
         
         let allFoodItemsViewController : AllFoodItemsViewController  = tripStoryboard.instantiateViewController(withIdentifier: "AllFoodItemsViewController") as! AllFoodItemsViewController
         
+        allFoodItemsViewController.globalSourceLocation = self.sourceLocation!
+        
         self.navigationController?.pushViewController(allFoodItemsViewController, animated: true)
     }
     
@@ -155,12 +172,161 @@ class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableV
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    // MARK: Fetch Locations
+    
+    // MARK: Functions for fetching location
+    func openLocationPicker() -> Void {
+        
+        let center = CLLocationCoordinate2DMake(self.latitude, self.longitude)
+        let northEast = CLLocationCoordinate2DMake(center.latitude + 0.001, center.longitude + 0.001)
+        let southWest = CLLocationCoordinate2DMake(center.latitude - 0.001, center.longitude - 0.001)
+        let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
+        let config = GMSPlacePickerConfig(viewport: viewport)
+        self.placePicker = GMSPlacePicker(config: config)
+        
+        
+        
+        
+        let filter = GMSAutocompleteFilter.init()
+        filter.country = "IN"
+        filter.type = .city
+        
+        
+        let fetcher = GMSAutocompleteFetcher.init(bounds: GMSCoordinateBounds.init(region: GMSVisibleRegion.init()), filter: filter)
+        
+        
+        // 2
+        //  placePicker.pickPlace { (place: GMSPlace?, error: NSError?) -> Void in
+        self.placePicker.pickPlace { (place: GMSPlace?, error: Error?) -> Void in
+            
+            if let error = error {
+                print("Error occurred: \(error.localizedDescription)")
+                return
+            }
+            // 3
+            if let place = place {
+                //let coordinates = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
+                //let marker = GMSMarker(position: coordinates)
+                //ENter the place you selected
+                
+                let placeDict : NSMutableDictionary = NSMutableDictionary()
+                
+                
+                let fullPlace : String? = ((place.formattedAddress) != nil) ? place.formattedAddress! : ""
+                placeDict.setObject(place.name, forKey: "name" as NSCopying)
+                placeDict.setObject(fullPlace!, forKey: "formattedAddress" as NSCopying)
+                placeDict.setObject(place.placeID, forKey: "placeID" as NSCopying)
+                
+                
+                placeDict.setValue(place.coordinate.latitude, forKey: "latitude")
+                placeDict.setValue(place.coordinate.longitude, forKey: "longitude")
+                
+                
+                //  if self.selectedPlaceEntry == PlaceType.sourceType {
+                
+                self.sourceLocation  = LocationModal.init(locationDict: placeDict)
+                self.placenamesearched.text = place.name
+                self.latitude = place.coordinate.latitude
+                self.longitude = place.coordinate.longitude
+                
+           //     print("Address \(place.addressComponents.)")
+                //  self.labelRoute.text = ""
+                //                }
+                //                else {
+                //                    self.destinationLocation  = LocationModal.init(locationDict: placeDict)
+                //                    self.labelDestination.text = place.name
+                //                    self.labelRoute.text = ""
+                //                }
+                //
+            } else {
+                print("No place was selected")
+            }
+        }
+    }
+
+    //MARK: Location protocol
+    func locationManager(_ manager: CLLocationManager,
+                         didUpdateLocations locations: [CLLocation]){
+        // 1
+        let location:CLLocation = locations.last!
+        self.latitude = location.coordinate.latitude
+        self.longitude = location.coordinate.longitude
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager,
+                         didFailWithError error: Error){
+        
+        print("An error occurred while tracking location changes : \(error.localizedDescription)")
+    }
+    
+    
+    //MARK: reachability class
+    func checkNetworkStatus() -> Bool {
+        /*   var isAvailable  = false;
+         
+         do {
+         self.reachability = try Reachability.reachabilityForInternetConnection()
+         
+         switch reachability!.currentReachabilityStatus{
+         case .reachableViaWiFi:
+         isAvailable = true
+         case .reachableViaWWAN:
+         isAvailable = true
+         case .notReachable:
+         isAvailable = false
+         }
+         }
+         catch let error as NSError{
+         print(error.debugDescription)
+         }
+         
+         return isAvailable;
+         */
+        var isAvailable  = false;
+        
+        let reachability = Reachability()!
+        
+        if reachability.isReachable {
+            if reachability.isReachableViaWiFi {
+                print("Reachable via WiFi")
+                isAvailable = true
+            } else  if reachability.isReachableViaWWAN {
+                print("Reachable via WWAN")
+                isAvailable = true
+            } else {
+                print("Reachable via Cellular")
+                isAvailable = true
+            }
+        } else {
+            print("Network not reachable")
+            isAvailable = false
+        }
+        return isAvailable
+    }
+
     
     // MARK: Button actions
     
     @IBAction func openGooglePicker(_ sender: Any) {
+        if (self.checkNetworkStatus() == true) {
+            //       selectedPlaceEntry = PlaceType.sourceType
+            self.openLocationPicker()
+        }
+        else {
+            let alert = PopupViewController(title: "Network error !", message: "Please check your internet connection.")
+            alert.addAction(PopupAction(title: "Ok", type: .positive, handler: {(action : PopupAction) in
+                
+                
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
+    
     @IBAction func clearPlaceSearched(_ sender: Any) {
+        
+        self.sourceLocation  = LocationModal.init(locationDict: [:])
+        
     }
 
 }
