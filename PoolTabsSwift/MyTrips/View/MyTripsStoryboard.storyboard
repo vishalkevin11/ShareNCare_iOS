@@ -206,7 +206,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="My Trips" image="trip_list_icon" id="3Ne-mI-bnl"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="W1b-8F-LUY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W1b-8F-LUY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -336,7 +336,7 @@
             </objects>
             <point key="canvasLocation" x="3723" y="-415"/>
         </scene>
-        <!--My Offers-->
+        <!--My Offerings-->
         <scene sceneID="6dP-Kt-Boz">
             <objects>
                 <tableViewController storyboardIdentifier="CreateOfferFoodViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0sW-au-JlQ" customClass="CreateOfferFoodViewController" customModule="ShareNCare" customModuleProvider="target" sceneMemberID="viewController">
@@ -830,7 +830,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="My Offers" id="c2X-Lz-NHI"/>
+                    <navigationItem key="navigationItem" title="My Offerings" id="c2X-Lz-NHI"/>
                     <connections>
                         <outlet property="imageViewFood" destination="SL3-23-v2D" id="OJ9-8q-KIn"/>
                         <outlet property="labelSource" destination="caW-j0-Db1" id="fyZ-L0-dje"/>

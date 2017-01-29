@@ -10,7 +10,7 @@ import UIKit
 
 class ProductType: NSObject {
     
-    var typeid : String? = ""
+    var typeid : Int? = 0
     var categorytype : String? = ""
     var imageurl : String? = ""
     
@@ -23,7 +23,8 @@ class ProductType: NSObject {
     convenience init(productDict : NSDictionary){
         
         self.init()
-        self.typeid =  ((productDict["typeid"]) != nil ) ? productDict["typeid"]! as? String : "NA"
+       
+        self.typeid =  ((productDict["typeid"]) != nil ) ? (productDict["typeid"]! as AnyObject).intValue : 0
         self.categorytype =  ((productDict["categorytype"]) != nil ) ? productDict["categorytype"]! as? String : "NA"
         self.imageurl =  ((productDict["imageurl"]) != nil ) ? productDict["imageurl"]! as? String : "NA"
         

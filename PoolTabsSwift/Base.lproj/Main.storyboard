@@ -229,7 +229,7 @@
                                         </constraints>
                                         <state key="normal" backgroundImage="backButton"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food For All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njW-uG-n2D">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share &amp; Care" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njW-uG-n2D">
                                         <rect key="frame" x="114.66666666666669" y="18" width="185" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="9gB-lq-Yhx"/>

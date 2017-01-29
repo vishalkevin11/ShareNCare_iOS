@@ -1,8 +1,8 @@
 //
-//  ProductTypeViewController.swift
+//  ProductTypeSelectionViewController.swift
 //  ShareNCare
 //
-//  Created by Kevin Vishal on 1/27/17.
+//  Created by Kevin Vishal on 1/29/17.
 //  Copyright © 2017 TuffyTiffany. All rights reserved.
 //
 
@@ -18,12 +18,15 @@ import ReachabilitySwift
 import Alamofire
 
 
-class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-
+class ProductTypeSelectionViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+    
     @IBOutlet weak var tableViewProduct: UITableView!
     @IBOutlet weak var openGooglePickerBtn: UIButton!
     @IBOutlet weak var clearPlaceSearchedBtn: UIButton!
     @IBOutlet weak var placenamesearched: UILabel!
+    
+    
+    var createOfferFoodViewController: CreateOfferFoodViewController?
     
     var locationManager: CLLocationManager!
     var placePicker: GMSPlacePicker!
@@ -35,9 +38,12 @@ class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableV
     var arrayTrip : [ProductType]? = []
     var arrayDatasource : [ProductType]? = []
     var selectedTrip : ProductType?
-//    var allDetailsVC : TripDetailsBaseViewController?
+    //    var allDetailsVC : TripDetailsBaseViewController?
     
     var reachability: Reachability?
+    
+    
+   // var productIdSelected : Int?
     
     
     
@@ -45,11 +51,11 @@ class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         self.fetchAllProductTypes()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -120,22 +126,22 @@ class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableV
             
             self.arrayTrip = NSArray(array: trips!) as? [ProductType]
             
-           // self.generateDatasource()
+            // self.generateDatasource()
             self.tableViewProduct.reloadData();
             
         }
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-  // MARK: TableView methods
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    // MARK: TableView methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (arrayTrip?.count)!
@@ -151,27 +157,26 @@ class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableV
         cell.labelProductType.text = productCategory!.categorytype!
         let baseImageUrl = "\(kBaseURLString)icons/\(productCategory!.imageurl!)"
         cell.imageViewProductType.sd_setImage(with: URL(string: baseImageUrl), placeholderImage:UIImage.init(named: "placeholder"))
-        cell.labelProductSubType.text = ""
-  
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let tripStoryboard : UIStoryboard = UIStoryboard.init(name: "AllTripsStoryboard", bundle: Bundle.main)
-        
-        let allFoodItemsViewController : AllFoodItemsViewController  = tripStoryboard.instantiateViewController(withIdentifier: "AllFoodItemsViewController") as! AllFoodItemsViewController
+//        let tripStoryboard : UIStoryboard = UIStoryboard.init(name: "AllTripsStoryboard", bundle: Bundle.main)
+//        
+//        let allFoodItemsViewController : AllFoodItemsViewController  = tripStoryboard.instantiateViewController(withIdentifier: "AllFoodItemsViewController") as! AllFoodItemsViewController
         let productCategory = self.arrayTrip?[indexPath.row]
-        
-        allFoodItemsViewController.globalSourceLocation = self.sourceLocation!
+//        
+//        allFoodItemsViewController.globalSourceLocation = self.sourceLocation!
         self.selectedCategoryType = productCategory?.typeid!
-        allFoodItemsViewController.globalCategoryType = productCategory?.typeid!
-            
-        self.navigationController?.pushViewController(allFoodItemsViewController, animated: true)
+//        allFoodItemsViewController.globalCategoryType = productCategory?.typeid!
+//        
+//        self.navigationController?.pushViewController(allFoodItemsViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 78.0
+        return 66.0
     }
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -233,7 +238,7 @@ class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableV
                 self.latitude = place.coordinate.latitude
                 self.longitude = place.coordinate.longitude
                 
-           //     print("Address \(place.addressComponents.)")
+                //     print("Address \(place.addressComponents.)")
                 //  self.labelRoute.text = ""
                 //                }
                 //                else {
@@ -247,7 +252,7 @@ class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableV
             }
         }
     }
-
+    
     //MARK: Location protocol
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]){
@@ -308,7 +313,7 @@ class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableV
         }
         return isAvailable
     }
-
+    
     
     // MARK: Button actions
     
@@ -333,5 +338,15 @@ class ProductTypeViewController: UIViewController,UITableViewDataSource,UITableV
         self.placenamesearched.text = "Search Globally..."
         
     }
-
+    @IBAction func selctCatory(_ sender: Any) {
+        self.dismiss(animated: true) { 
+            self.createOfferFoodViewController?.productSelectedView(productID: self.selectedCategoryType!)
+        }
+    }
+    
+    @IBAction func cancelPopUp(_ sender: Any) {
+        self.dismiss(animated: true) {
+            
+        }
+    }
 }

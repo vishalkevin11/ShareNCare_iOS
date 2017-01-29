@@ -7,6 +7,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--All Categories-->
         <scene sceneID="0G0-o8-ban">
@@ -23,7 +28,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-Vu-Mkf">
                                 <rect key="frame" x="0.0" y="40" width="375" height="563"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <inset key="separatorInset" minX="102" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="separatorInset" minX="77" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductTypeTableViewCell" rowHeight="78" id="b9g-dV-NRP" customClass="ProductTypeTableViewCell" customModule="ShareNCare" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="78"/>
@@ -176,7 +181,7 @@
                 <navigationController storyboardIdentifier="ProductTypeNavViewController" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b7S-ZP-bH5" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CUj-8G-epg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CUj-8G-epg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

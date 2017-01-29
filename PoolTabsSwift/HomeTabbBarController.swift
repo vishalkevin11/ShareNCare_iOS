@@ -38,7 +38,7 @@ class HomeTabbBarController: UITabBarController { //,HotBoxDelegate {
         tabBarItem1.selectedImage = UIImage.init(named: "add_trip_icon")
         
         let tabBarItem2 : UITabBarItem = self.tabBar.items![2]
-        tabBarItem2.title = "My Offers"
+        tabBarItem2.title = "My Offerings"
         tabBarItem2.image = UIImage.init(named: "refrigerator_icon")
         tabBarItem2.selectedImage = UIImage.init(named: "refrigerator_icon")
         

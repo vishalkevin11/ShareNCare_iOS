@@ -232,4 +232,22 @@ static let appPaleGreenColor = UIColor.init(red: (22.0/255.0), green: (157.0/255
         //self.loader!.removeFromSuperview()
         self.loader.hide()
     }
+    
+    func getProductTypeId(prodId:Int?) -> String {
+        
+        var prodName = ""
+        switch prodId! {
+        case 1:
+            prodName = "Food"
+        case 2:
+            prodName = "Clothing"
+        case 3:
+            prodName = "Automobiles"
+        case 4:
+            prodName = "Furniture"
+        default:
+            print("ccc")
+        }
+        return prodName
+    }
 }

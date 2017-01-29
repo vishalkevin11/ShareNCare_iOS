@@ -28,7 +28,7 @@ class AllFoodItemsViewController: UIViewController {
     
     
      var  globalSourceLocation : LocationModal! = LocationModal()
-    
+    var globalCategoryType : Int! = 0
     
     @IBOutlet weak var travellerSegment: UISegmentedControl!
     var myTripsNetworkManager : MyTripsNetworkManager  = MyTripsNetworkManager()
@@ -337,7 +337,13 @@ class AllFoodItemsViewController: UIViewController {
             })
         }
         else {
-            self.arrayDatasource = arrayTrip!
+            
+            self.arrayDatasource = arrayTrip!.filter({
+                 $0.foodType == self.globalCategoryType!
+            })
+            
+            
+          //  self.arrayDatasource = arrayTrip!
         }
        
         self.labelNoTrips.text = "No Food Items Found"
@@ -440,16 +446,18 @@ class AllFoodItemsViewController: UIViewController {
             cell.imageViewGreen.isHidden = true
         }
         
-        if  tempTrip.foodType == 0 {
-            cell.baleFoodType.text = "Veg"
-            cell.baleFoodType.backgroundColor = UIColor.init(colorLiteralRed: (15.0/255.0), green:  (112.0/255.0), blue:  (1.0/255.0), alpha: 1.0)
-        }
-        else {
-            cell.baleFoodType.text = "Non-Veg"
-            cell.baleFoodType.backgroundColor = UIColor.init(colorLiteralRed: (112.0/255.0), green:  (40.0/255.0), blue:  (25.0/255.0), alpha: 1.0)
-        }
+//        if  tempTrip.foodType == 0 {
+//            cell.baleFoodType.text = "Veg"
+//            cell.baleFoodType.backgroundColor = UIColor.init(colorLiteralRed: (15.0/255.0), green:  (112.0/255.0), blue:  (1.0/255.0), alpha: 1.0)
+//        }
+//        else {
+//            cell.baleFoodType.text = "Non-Veg"
+//            cell.baleFoodType.backgroundColor = UIColor.init(colorLiteralRed: (112.0/255.0), green:  (40.0/255.0), blue:  (25.0/255.0), alpha: 1.0)
+//        }
+//        
         
-        
+        cell.baleFoodType.text = PoolContants.sharedInstance.getProductTypeId(prodId: tempTrip.foodType!)
+        cell.baleFoodType.backgroundColor = UIColor.init(colorLiteralRed: (15.0/255.0), green:  (112.0/255.0), blue:  (1.0/255.0), alpha: 1.0)
         cell.weekDayPicker.alpha =  0.0
    //     cell.labelTimeStamp.alpha = (tempTrip.schedule_type == 1) ? 1.0 : 0.0
         

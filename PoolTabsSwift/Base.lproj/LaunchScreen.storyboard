@@ -23,10 +23,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shere_food" translatesAutoresizingMaskIntoConstraints="NO" id="KTv-vS-M0z">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food For All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Zb-dO-vtU">
-                                <rect key="frame" x="107.5" y="418.5" width="160" height="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share &amp; Care" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Zb-dO-vtU">
+                                <rect key="frame" x="99.5" y="418.5" width="176" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="7w8-dT-Nae"/>
+                                    <constraint firstAttribute="width" constant="176" id="7w8-dT-Nae"/>
                                     <constraint firstAttribute="height" constant="42" id="MQ6-mZ-PDy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GurmukhiMN-Bold" family="Gurmukhi MN" pointSize="26"/>

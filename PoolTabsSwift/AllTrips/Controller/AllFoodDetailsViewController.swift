@@ -62,6 +62,7 @@ class AllFoodDetailsViewController: UITableViewController, CLLocationManagerDele
     @IBOutlet weak var txtAlternatePhoneNumber: UITextField!
     @IBOutlet weak var txtServesHowMAny: UITextField!
     @IBOutlet weak var txtViewFoodDescription: UITextView!
+    @IBOutlet weak var labelProductType: UILabel!
     
     
     
@@ -584,15 +585,15 @@ class AllFoodDetailsViewController: UITableViewController, CLLocationManagerDele
         
         // self.strDepartTime = PoolContants.sharedInstance.getFormatedTimeFromDate(newDepartdate)
         
-        let foodType = self.currentEditingTrip.foodType!
+       // let foodType = self.currentEditingTrip.foodType!
         
-        if foodType == 0 {
-            self.imageViewFoodType.image = UIImage.init(named: "veg_icon.png")
-        }
-        else {
-            self.imageViewFoodType.image = UIImage.init(named: "nonveg_icon.png")
-        }
-        
+//        if foodType == 0 {
+//            self.imageViewFoodType.image = UIImage.init(named: "veg_icon.png")
+//        }
+//        else {
+//            self.imageViewFoodType.image = UIImage.init(named: "nonveg_icon.png")
+//        }
+        self.labelProductType.text = "Product Type : \(PoolContants.sharedInstance.getProductTypeId(prodId: self.currentEditingTrip.foodType!))"
         
         var expiryDate = PoolContants.sharedInstance.getDateFromUNIXTimeStamp(self.currentEditingTrip.expiry_date!)
         let dateformatter : DateFormatter = DateFormatter.init()

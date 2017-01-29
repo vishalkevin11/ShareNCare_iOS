@@ -96,6 +96,7 @@
 		993CF5AE1DF3E86A0038EBBC /* LoginCognolysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993CF5AD1DF3E86A0038EBBC /* LoginCognolysViewController.swift */; };
 		994074E91D5349E100B6AE00 /* EditTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994074E81D5349E100B6AE00 /* EditTripViewController.swift */; };
 		994255DC1D4C901600380F52 /* LocationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994255DB1D4C901600380F52 /* LocationModal.swift */; };
+		99480F881E3DCF44007AA45B /* ProductTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99480F871E3DCF44007AA45B /* ProductTypeSelectionViewController.swift */; };
 		994FEF971D8D77F3001AF0A6 /* WeekDaysSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994FEF961D8D77F3001AF0A6 /* WeekDaysSegmentedControl.swift */; };
 		996D2C371D633A4B00902517 /* RHButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996D2C311D633A4B00902517 /* RHButtonView.swift */; };
 		996D2C381D633A4B00902517 /* RHButtonViewConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996D2C321D633A4B00902517 /* RHButtonViewConfigProtocol.swift */; };
@@ -221,6 +222,7 @@
 		993CF5AD1DF3E86A0038EBBC /* LoginCognolysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCognolysViewController.swift; sourceTree = "<group>"; };
 		994074E81D5349E100B6AE00 /* EditTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTripViewController.swift; sourceTree = "<group>"; };
 		994255DB1D4C901600380F52 /* LocationModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModal.swift; sourceTree = "<group>"; };
+		99480F871E3DCF44007AA45B /* ProductTypeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductTypeSelectionViewController.swift; sourceTree = "<group>"; };
 		994FEF961D8D77F3001AF0A6 /* WeekDaysSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDaysSegmentedControl.swift; sourceTree = "<group>"; };
 		996D2C311D633A4B00902517 /* RHButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHButtonView.swift; sourceTree = "<group>"; };
 		996D2C321D633A4B00902517 /* RHButtonViewConfigProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHButtonViewConfigProtocol.swift; sourceTree = "<group>"; };
@@ -701,6 +703,7 @@
 			isa = PBXGroup;
 			children = (
 				99966F4F1E3B5BC4008F3CA8 /* ProductTypeViewController.swift */,
+				99480F871E3DCF44007AA45B /* ProductTypeSelectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -966,6 +969,7 @@
 				993C9B141D3F8F81001B2451 /* PXGoogleDirectionsResponse.swift in Sources */,
 				994FEF971D8D77F3001AF0A6 /* WeekDaysSegmentedControl.swift in Sources */,
 				9918779C1D4213A3000C4B86 /* RoutesListViewController.swift in Sources */,
+				99480F881E3DCF44007AA45B /* ProductTypeSelectionViewController.swift in Sources */,
 				9918779A1D4212EE000C4B86 /* ViewPagerControllerAppearance.swift in Sources */,
 				993182681DD71B5600DE254F /* MyFoodDetailsViewController.swift in Sources */,
 				99966F501E3B5BC4008F3CA8 /* ProductTypeViewController.swift in Sources */,
@@ -1106,7 +1110,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.backend.kship;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuffytiffany.sharencare;
 				PRODUCT_NAME = ShareNCare;
 				SWIFT_OBJC_BRIDGING_HEADER = "PoolTabsSwift/HSDatePickerViewController/PoolTabsSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1130,7 +1134,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.backend.kship;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuffytiffany.sharencare;
 				PRODUCT_NAME = ShareNCare;
 				SWIFT_OBJC_BRIDGING_HEADER = "PoolTabsSwift/HSDatePickerViewController/PoolTabsSwift-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

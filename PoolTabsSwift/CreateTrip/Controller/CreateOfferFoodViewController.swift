@@ -56,7 +56,9 @@ class CreateOfferFoodViewController: UITableViewController, CLLocationManagerDel
   //  var selectedPlaceEntry = PlaceType.sourceType
     
     var leaveDateType = LeaveDateType.arrivingTYpe
-    var foodType = FoodType.vegType
+    //var foodType = FoodType.vegType
+    
+    var foodType = 0
     
     var seatsArray = [1,2,3,4,5,6,7,8]
     
@@ -70,6 +72,7 @@ class CreateOfferFoodViewController: UITableViewController, CLLocationManagerDel
     @IBOutlet weak var imageViewFood: UIImageView!
     @IBOutlet weak var txtFldFood: UITextField!
     @IBOutlet weak var labelSource: UILabel!
+    @IBOutlet weak var labelProductType: UILabel!
     @IBOutlet weak var lblTimeArrive: UILabel!
     @IBOutlet weak var lblTimeDepart: UILabel!
     @IBOutlet weak var txtAlternatePhoneNumber: UITextField!
@@ -140,7 +143,7 @@ class CreateOfferFoodViewController: UITableViewController, CLLocationManagerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Offer Food"
+        self.title = "Create Offer"
         
         //  self.pickerWeekDay.showSmallText = false
         self.latitude = 0.0
@@ -257,7 +260,7 @@ class CreateOfferFoodViewController: UITableViewController, CLLocationManagerDel
     func initialize() -> Void {
         
         self.foodTypeSegment.selectedSegmentIndex = 0
-        self.foodType = .vegType
+        self.foodType = 0
         self.pickerWeekDay.daysString = "1111100"
         self.pickerWeekDay.borderColor = PoolContants.appPaleGreenColor
         self.pickerWeekDay.textColor = PoolContants.appPaleGreenColor
@@ -684,7 +687,7 @@ class CreateOfferFoodViewController: UITableViewController, CLLocationManagerDel
         postDictionary.setObject(self.txtServesHowMAny.text!, forKey: kPostOfferServesCount as NSCopying)
         
         postDictionary.setValue("\(self.selectedexpiryDate!.timeIntervalSince1970)", forKey: kPostExpiryDate)
-        postDictionary.setValue(self.foodType.rawValue, forKey: kPostFoodType)
+        postDictionary.setValue(self.foodType, forKey: kPostFoodType)
         
         
         // POST TO SERVER
@@ -918,6 +921,9 @@ class CreateOfferFoodViewController: UITableViewController, CLLocationManagerDel
             else if (indexPath.row == 1) {
                 return 74.0
             }
+            else if (indexPath.row == 2) {
+                return 74.0
+            }
         }
         else
             if (indexPath.section == 2) {
@@ -947,6 +953,9 @@ class CreateOfferFoodViewController: UITableViewController, CLLocationManagerDel
         else if indexPath.section == 1 {
             switch indexPath.row {
             case 1:
+                self.openCategoryPicker()
+                break
+            case 2:
                 self.searchSource()
                 break
                 //            case 3:
@@ -1098,19 +1107,43 @@ class CreateOfferFoodViewController: UITableViewController, CLLocationManagerDel
         return true
     }
     
+    
+    // MARK: Prepare For Segue
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if  segue.identifier == "showCategoryPicker" {
+            
+            var productTypeSelectionVC : ProductTypeSelectionViewController = segue.destination as! ProductTypeSelectionViewController
+            productTypeSelectionVC.createOfferFoodViewController = self
+        }
+    }
+    
+    // MARK: Delegate from Product Selction View
+    
+    func productSelectedView(productID : Int?) -> Void {
+        print("productID \(productID!)")
+        self.labelProductType.text = "Product Type : \(PoolContants.sharedInstance.getProductTypeId(prodId: productID!))"
+        self.foodType = productID!
+    }
+    
     // MARK:  Actions
     
     @IBAction func foodTypeChanged(_ sender: AnyObject) {
         
-        let segment = sender as! UISegmentedControl
-        if  segment.selectedSegmentIndex == 0 {
-            self.foodType = .vegType
-            print("VEG")
-        }
-        else {
-            self.foodType = .nonvegType
-            print("NON-VEG")
-        }
+//        let segment = sender as! UISegmentedControl
+//        if  segment.selectedSegmentIndex == 0 {
+//            self.foodType = .vegType
+//            print("VEG")
+//        }
+//        else {
+//            self.foodType = .nonvegType
+//            print("NON-VEG")
+//        }
+    }
+    
+    func  openCategoryPicker() -> Void {
+        self.performSegue(withIdentifier: "showCategoryPicker", sender: self)
     }
     
     func searchSource() -> Void {
